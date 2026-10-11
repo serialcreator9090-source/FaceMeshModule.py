@@ -12,17 +12,17 @@ class FaceMeshDetector:
         self.minDetectionCon = minDetectionCon
         self.minTrackingCon = minTrackingCon
 
-        self.mpFaceMesh = mp.solutions.face_mesh      # <-- YOUR MISTAKE (Forgot to create mpFaceMesh object)
+        self.mpFaceMesh = mp.solutions.face_mesh      
         self.mpDraw = mp.solutions.drawing_utils
 
         self.facemesh = self.mpFaceMesh.FaceMesh(
-            static_image_mode=self.staticMode,              # <-- YOUR MISTAKE (Wrong parameter name)
-            max_num_faces=self.maxFaces,                    # <-- YOUR MISTAKE (Hardcoded 2 instead of self.maxFaces)
-            min_detection_confidence=self.minDetectionCon,  # <-- YOUR MISTAKE (Wrong parameter name)
-            min_tracking_confidence=self.minTrackingCon     # <-- YOUR MISTAKE (Wrong parameter name)
+            static_image_mode=self.staticMode,             
+            max_num_faces=self.maxFaces,                    
+            min_detection_confidence=self.minDetectionCon, 
+            min_tracking_confidence=self.minTrackingCon    
         )
 
-        self.drawspec = self.mpDraw.DrawingSpec(            # <-- YOUR MISTAKE (DrawingSpec spelling)
+        self.drawspec = self.mpDraw.DrawingSpec(            
             thickness=1,
             circle_radius=2
         )
@@ -31,7 +31,7 @@ class FaceMeshDetector:
 
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        self.results = self.facemesh.process(imgRGB)        # <-- YOUR MISTAKE (Used self.imgRGB)
+        self.results = self.facemesh.process(imgRGB)        
 
         faces = []
 
@@ -39,7 +39,7 @@ class FaceMeshDetector:
             for faceLms in self.results.multi_face_landmarks:
 
                 if draw:
-                    self.mpDraw.draw_landmarks(             # <-- YOUR MISTAKE (Used self.mp.solutions...)
+                    self.mpDraw.draw_landmarks(             
                         img,
                         faceLms,
                         self.mpFaceMesh.FACEMESH_CONTOURS,
@@ -56,19 +56,19 @@ class FaceMeshDetector:
 
                     face.append([x, y])
 
-                faces.append(face)                          # <-- YOUR MISTAKE (Forgot to append face)
+                faces.append(face)                          
 
         return img, faces
 
 
-# <-- YOUR MISTAKE (main() should be outside the class)
+
 def main():
 
     cap = cv2.VideoCapture(0)
 
     pTime = 0
 
-    detector = FaceMeshDetector(maxFaces=2)                # <-- YOUR MISTAKE (Constructor name mismatch)
+    detector = FaceMeshDetector(maxFaces=2)               
 
     while True:
 
@@ -84,8 +84,8 @@ def main():
 
         cTime = time.time()
 
-        fps = 1 / (cTime - pTime)                           # <-- YOUR MISTAKE (pTieme spelling)
-        pTime = cTime                                       # <-- YOUR MISTAKE (pTieme spelling)
+        fps = 1 / (cTime - pTime)                           
+        pTime = cTime                                       
 
         cv2.putText(
             img,
@@ -99,7 +99,7 @@ def main():
 
         cv2.imshow("Image", img)
 
-        if cv2.waitKey(1) & 0xFF == ord("q"):               # <-- YOUR MISTAKE (Didn't check if q was pressed)
+        if cv2.waitKey(1) & 0xFF == ord("q"):               
             break
 
     cap.release()
