@@ -1,0 +1,51 @@
+# Face Mesh Detection using OpenCV and MediaPipe
+
+A real-time face mesh detection project built using Python, OpenCV, and MediaPipe. The project detects facial landmarks through a webcam and draws facial contours.
+
+## Features
+
+- Real-time facial landmark detection
+- Drawing facial contours and connections
+- Support for detecting multiple faces
+- Extraction of facial landmark coordinates
+- FPS display for performance monitoring
+
+## Technologies Used
+
+- Python
+- OpenCV
+- MediaPipe
+
+## Installation
+
+Install the required Python libraries:
+
+```bash
+pip install opencv-python mediapipe
+```
+
+## How to Run
+
+1. Clone or download this repository.
+2. Open a terminal in the project folder.
+3. Run the Python script:
+
+```bash
+python FaceMeshModule.py
+```
+
+4. Allow access to your webcam.
+5. Press `q` to exit the application.
+
+## Main Components
+
+- `FaceMeshDetector` — Initializes the MediaPipe Face Mesh detector.
+- `findFaceMesh()` — Processes an image, optionally draws facial contours, and returns facial landmark coordinates.
+
+## Notes
+
+A working webcam and compatible Python and MediaPipe versions are required. Detection performance may vary with lighting, camera quality, and face position.
+
+## Author
+
+Developed as a computer vision learning project.
